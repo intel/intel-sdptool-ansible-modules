@@ -1,0 +1,42 @@
+---
+- name: CPU Information
+  sdptool:
+    action: "cpuinfo"
+  register: output
+- name: CPU Info Output
+  debug:
+    msg: "{{ output.stdout_lines }}"
+
+- name: System Information
+  sdptool:
+    action: "systeminfo"
+  register: output
+- name: System Info Output
+  debug:
+    msg: "{{ output.stdout_lines }}"
+
+- name: Set LAN Parameters
+  sdptool:
+    action: "setlan"
+    args: 
+      - 1
+      - 1.2.3.4
+      - 255.255.0.0
+      - 1.2.3.1
+      - 1.1.1.3
+      - 1.1.1.4
+  register: output
+- name: Set LAN Output
+  debug:
+    msg: "{{ output.stdout_lines }}"
+
+- name: Get SEL
+  sdptool:
+    action: "sel"
+    args: 
+      - -f
+      - sel.log
+  register: output
+- name: Get SEL Output
+  debug:
+    msg: "{{ output.stdout_lines }}"

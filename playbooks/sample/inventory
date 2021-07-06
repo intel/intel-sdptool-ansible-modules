@@ -1,0 +1,2 @@
+[BMC]
+<BMC_IP> bmc_username=<user> bmc_password=<password> ini_path=</path/to/syscfg.INI> vmedia_iso_path=//user:Password@Windows-Share</path/to/ISO> unmount_iso_path=//user:Password@Windows-Share</path/to/ISO> sup_path=</path/to/sup> custom_sup_path=</path/to/custom_script>

@@ -1,0 +1,4 @@
+---
+inventory_hostname: BMC_IP
+bmc_username: user
+bmc_password: password
