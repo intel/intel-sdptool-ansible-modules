@@ -7,7 +7,7 @@ A sample of the inventory file is available in the project which can be
 customized and used. A sample playbook is also provided to assist in writing
 a customized playbook. Please find more information on the capabilities /
 usage of the SDP Tool in the following link.
-[Intel(R) Server Debug and Provisioning Tool](https://downloadcenter.intel.com/download/30183/Intel-Server-Debug-and-Provisioning-Tool-Intel-SDPTool-)
+[Intel(R) Server Debug and Provisioning Tool](https://downloadcenter.intel.com/download/30410/Intel-Server-Debug-and-Provisioning-Tool-Intel-SDP-Tool-)
 
 ## Pre-requisites
 - Ansible >= 2.10.x
@@ -15,7 +15,7 @@ usage of the SDP Tool in the following link.
 - `pexpect`\
   Python package
 - Intel SDP Tool >= v2.0.0\
-  Install Intel(R) SDP Tool from [here](https://downloadcenter.intel.com/download/30183/Intel-Server-Debug-and-Provisioning-Tool-Intel-SDPTool-) on the Ansible Controller
+  Install Intel(R) SDP Tool from [here](https://downloadcenter.intel.com/download/30410/Intel-Server-Debug-and-Provisioning-Tool-Intel-SDP-Tool-) on the Ansible Controller
 
 ## Playbook
 ```yaml

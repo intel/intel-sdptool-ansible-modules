@@ -15,7 +15,7 @@ description: Intel(R) SDP Tool Ansible plugin.
   customized and used. A sample playbook is also provided to assist in writing
   a customized playbook. Please find more information on the capabilities /
   usage of the SDP Tool in the following link.
-  https://downloadcenter.intel.com/download/30183/Intel-Server-Debug-and-Provisioning-Tool-Intel-SDPTool-
+  https://downloadcenter.intel.com/download/30410/Intel-Server-Debug-and-Provisioning-Tool-Intel-SDP-Tool-
 
 license:
 - GPL-3.0+
