@@ -63,3 +63,30 @@
     - name: Get SEL Output
       debug:
         msg: "{{ output.stdout_lines }}"
+
+    - name: Update SUP
+      sdptool:
+        action: "update"
+      register: output
+
+    - name: Update Output
+      debug:
+        msg: "{{ output.stdout_lines }}"
+
+    - name: Custom Deploy
+      sdptool:
+        action: "custom_deploy"
+      register: output
+
+    - name: Custom Deploy Output
+      debug:
+        msg: "{{ output.stdout_lines }}"
+
+    - name: CUP Deploy
+      sdptool:
+        action: "cup_deploy"
+      register: output
+
+    - name: CUP Deploy Output
+      debug:
+        msg: "{{ output.stdout_lines }}"
