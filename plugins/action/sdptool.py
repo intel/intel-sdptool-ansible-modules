@@ -71,7 +71,7 @@ class ActionModule(ActionBase):
                 raise AnsibleError("INI Path not provided")
             ActionModule.verify_path(task_vars["ini_path"])
             args.append(task_vars["ini_path"])
-        elif task_args["action"] in ["vmedia", "unmount"]:
+        elif task_args["action"] in ["vmedia"]:
             if task_args["action"] + '_iso_path' not in task_vars:
                 raise AnsibleError("{0} not provided".format(
                     task_args["action"] + '_iso_path') + '"')
@@ -87,6 +87,12 @@ class ActionModule(ActionBase):
             ActionModule.verify_path(
                 task_vars["custom_sup_path"], directory=True)
             args.append(task_vars["custom_sup_path"])
+        elif task_args["action"] == "cup_deploy":
+            if 'cup_path' not in task_vars:
+                raise AnsibleError("Custom Update Package not provided")
+            ActionModule.verify_path(
+                task_vars["cup_path"], directory=False)
+            args.append(task_vars["cup_path"])
         return args
 
     @staticmethod
@@ -136,7 +142,7 @@ class ActionModule(ActionBase):
             responses={
                 "..*": "y"
             },
-            timeout=200
+            timeout=600
         )
         try:
             display.banner(msg=' '.join(params), color='green')

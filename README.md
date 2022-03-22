@@ -57,11 +57,9 @@ The following variables are command specific and will be required variable :
 - **vmedia_iso_path**: iso path for vmedia
     - Samba share path with username and password
     - ISO or IMG file path
-- **unmount_iso_path**: iso path for unmount
-    - Samba share path with username and password
-    - ISO or IMG file path
 - **sup_path**: SUP directory path for update, command - update
-- **custom_sup_path**: SUP directory path for custom_deploy,command - custom_deploy
+- **custom_sup_path**: SUP directory path for custom_deploy, command - custom_deploy
+- **cup_path**: CUP zip path for cup_deploy, command - cup_deploy
 
 ```ini
 # Sample Inventory
