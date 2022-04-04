@@ -1,0 +1,70 @@
+Ansible Plugin for Intel(R) SDP Tool
+
+1) Pre-Requisites:
+    * Python3
+    * ansible
+        Use "pip3 install ansible" to install ansible
+    * Intel(R) SDP Tool >= 2.0-0
+
+2) Installing Collection:
+    1. From Source
+        a. Run install-collection.sh script
+    2. From Ansible Galaxy
+        a. Run below command to install sdptool collection from Galaxy
+            ansible-galaxy collection install intel.sdptool
+
+3) Writing Ansible Script:
+    1. Ansible Configuration (ansible.cfg):
+        a. Intro:
+            ansible.cfg file is used to modify ansible pre-configuration such
+            as default python interpreter, maximum number of concurrent tasks,
+            command execution type: local or ssh etc. It is recommend to have
+            atleast below config shown below
+        b. Sample ansible.cfg file
+        -----------------------------------
+        [defaults]
+        INTERPRETER_PYTHON=/usr/bin/python3
+        transport = local
+        forks = 1000
+        [persistent_connection]
+        command_timeout = 3000
+        -----------------------------------
+    2. Inventory definition (hosts):
+        a. Intro:
+            hosts file, also known as inventory, defines the set or group of
+            targets where the tasks defined in playbook are executed. In this
+            plugin, the host is defined with BMC ip, BMC username and
+            BMC password.
+        b. Host variable:
+            bmc_username: BMC username
+            bmc_password: BMC password
+            ini_path: syscfg file path for set_biosconfig_all
+            vmedia_iso_path: iso path for vmedia
+                I. Samba share path with username and password
+                II. ISO or IMG file path
+            sup_path: SUP directory path for update, command - update
+            custom_sup_path: SUP directory path for custom_deploy, command - custom_deploy
+            cup_path: CUP zip path for cup_deploy, command - cup_deploy
+
+    3. Playbook (test.yaml):
+        a. Intro:
+            Playbook file consists of collection of tasks that are executed
+            on set or group of hosts. 
+        b. SDPPlugin task Example:
+        -----------------------------------
+        - name: System Information
+          sdptool:
+             action: "systeminfo"
+          register: output
+        -----------------------------------
+
+4) Execution:
+    * cd into directory having ansible.cfg, hosts and playbook files
+    * Run below command to initiate ansible tasks
+        ansible-playbook -i hosts test.yaml
+
+
+Note: 
+    1.  Host reboot is avoided by the plugin for set_biosconfig and set_biosconfig_all
+    2.  ipmi reboot commands such as getini, getbiosoptions, setoptions, setlan and
+        deployoptions are not supported

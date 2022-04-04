@@ -14,7 +14,7 @@ author:
   - Yeshaswi M R Gowda (@intel)
   - Mohammed Mujahid Ul Islam (@intel)
 short_description: SDP Tool plugin for managing BMC
-version_added: "1.0.0"
+version_added: "2.0.0"
 description: 'The module allows to executes SDPTool command which manages a BMC'
 options:
   action:
