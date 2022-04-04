@@ -64,7 +64,7 @@ class ActionModule(ActionBase):
     def supported_sdptool_args(task_args, task_vars):
         """Check supported SDP Tool argument and required parameters"""
         args = []
-        if task_args['action'] in ['getini', 'getbiosoptions', 'setoptions', 'deployoptions']:
+        if task_args['action'] in ['getini', 'getbiosoptions', 'setoptions', 'deployoptions', 'setlan']:
             raise AnsibleError("Operation not Supported")
         if task_args["action"] == "set_biosconfig_all":
             if 'ini_path' not in task_vars:
@@ -122,7 +122,10 @@ class ActionModule(ActionBase):
 
     def run(self, tmp=None, task_vars=None):
         """Plugin execution method"""
+
         super(ActionModule, self).run(tmp, task_vars)
+        if(("bmc_username" not in task_vars) or ("bmc_password" not in task_vars)):
+            raise AnsibleError("bmc_username and bmc_password are required in inventory")
         self.check_sdptool_installed(tmp, task_vars)
         self.check_pexpect_module()
         task_args = self._task.args.copy()
@@ -171,5 +174,4 @@ class ActionModule(ActionBase):
             output_dict['failed'] = module_return['failed']
         if 'stdout_lines' in module_return:
             output_dict['stdout_lines'] = module_return['stdout_lines']
-
         return output_dict
