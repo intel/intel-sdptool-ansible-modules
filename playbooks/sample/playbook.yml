@@ -90,3 +90,23 @@
     - name: CUP Deploy Output
       debug:
         msg: "{{ output.stdout_lines }}"
+
+    - name: CUP Staged Deploy
+      sdptool:
+        action: "cup_deploy"
+        args:
+          - -staged
+      register: output
+
+    - name: CUP Deploy Output
+      debug:
+        msg: "{{ output.stdout_lines }}"
+
+    - name: CUP Inspect
+      sdptool:
+        action: "cup_inspect"
+      register: output
+
+    - name: CUP Inspect Output
+      debug:
+        msg: "{{ output.stdout_lines }}"

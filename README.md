@@ -59,7 +59,7 @@ The following variables are command specific and will be required variable :
     - ISO or IMG file path
 - **sup_path**: SUP directory path for update, command - update
 - **custom_sup_path**: SUP directory path for custom_deploy, command - custom_deploy
-- **cup_path**: CUP zip path for cup_deploy, command - cup_deploy
+- **cup_path**: CUP zip path for cup_deploy and cup_inspect, command - cup_deploy and cup_inspect
 
 ```ini
 # Sample Inventory
