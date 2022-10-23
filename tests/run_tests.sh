@@ -1,13 +1,19 @@
 #!/usr/bin/env bash
 
 cwd="$(readlink -f "$(dirname "$0")")"
-parent_dir="$(dirname "$cwd")"
 
-cd "$parent_dir"
-virtualenv venv
-source venv/bin/activate
-pip install https://github.com/ansible/ansible/archive/devel.tar.gz --disable-pip-version-check
+cd /tmp/
 pip install pexpect
+rm -rf /tmp/devel.tar.gz
+rm -rf /tmp/ansible-devel
+
+echo "Downloading Ansible devel package"
+wget install https://github.com/ansible/ansible/archive/devel.tar.gz 2>/dev/null
+
+echo "Extracting Ansible devel package"
+tar -xvf devel.tar.gz > /dev/null 2>&1
+
+source /tmp/ansible-devel/hacking/env-setup
 
 cd "$cwd"
 

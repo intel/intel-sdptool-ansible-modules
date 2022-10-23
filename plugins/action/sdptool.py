@@ -87,11 +87,15 @@ class ActionModule(ActionBase):
             ActionModule.verify_path(
                 task_vars["custom_sup_path"], directory=True)
             args.append(task_vars["custom_sup_path"])
-        elif task_args["action"] == "cup_deploy":
+        elif task_args["action"] in ["cup_deploy", "cup_inspect"]:
             if 'cup_path' not in task_vars:
+                if task_args["action"] == "cup_inspect":
+                    return args
                 raise AnsibleError("Custom Update Package not provided")
-            ActionModule.verify_path(
-                task_vars["cup_path"], directory=False)
+            if not (task_vars["cup_path"].startswith('http://')
+                    or task_vars["cup_path"].startswith('https://')):
+                ActionModule.verify_path(
+                    task_vars["cup_path"], directory=False)
             args.append(task_vars["cup_path"])
         return args
 
@@ -109,6 +113,9 @@ class ActionModule(ActionBase):
             if i + 1 < len(args):
                 args[i + 1] = '"' + \
                     ActionModule.change_path(args[i + 1], task_vars) + '"'
+        if task_args['action'] == 'cup_deploy' and '-attached' in args:
+            raise AnsibleError(
+                "Staged Custom Update Package deploy is not provided in attached mode")
         return args
 
     @staticmethod
@@ -124,8 +131,9 @@ class ActionModule(ActionBase):
         """Plugin execution method"""
 
         super(ActionModule, self).run(tmp, task_vars)
-        if(("bmc_username" not in task_vars) or ("bmc_password" not in task_vars)):
-            raise AnsibleError("bmc_username and bmc_password are required in inventory")
+        if (("bmc_username" not in task_vars) or ("bmc_password" not in task_vars)):
+            raise AnsibleError(
+                "bmc_username and bmc_password are required in inventory")
         self.check_sdptool_installed(tmp, task_vars)
         self.check_pexpect_module()
         task_args = self._task.args.copy()
