@@ -60,6 +60,7 @@ The following variables are command specific and will be required variable :
 - **sup_path**: SUP directory path for update, command - update
 - **custom_sup_path**: SUP directory path for custom_deploy, command - custom_deploy
 - **cup_path**: CUP zip path for cup_deploy and cup_inspect, command - cup_deploy and cup_inspect
+- **log_timeout**: Timeout in seconds for SDPTool log print in console. Increase when **"command exceeded timeout"** is observed. Default: 720
 
 ```ini
 # Sample Inventory

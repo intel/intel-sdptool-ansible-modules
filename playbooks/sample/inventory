@@ -7,3 +7,4 @@ custom_sup_path=</path/to/custom_script>
 cup_path=</path/to/cup.zip>
 ini_path=</path/to/syscfg.INI>
 vmedia_iso_path=//user:Password@Windows-Share</path/to/ISO>
+log_timeout=720

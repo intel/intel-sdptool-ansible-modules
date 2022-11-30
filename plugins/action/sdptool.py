@@ -153,7 +153,7 @@ class ActionModule(ActionBase):
             responses={
                 "..*": "y"
             },
-            timeout=600
+            timeout=task_vars.get('log_timeout', 720)
         )
         try:
             display.banner(msg=' '.join(params), color='green')
